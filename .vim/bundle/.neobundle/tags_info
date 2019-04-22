@@ -1,0 +1,15 @@
+indentLine
+neobundle.vim
+neocomplcache
+neocomplete.vim
+neosnippet
+neosnippet-snippets
+nerdtree
+syntastic
+verilog_systemverilog.vim
+vim-autoclose
+vim-commentary
+vim-endwise
+vim-quickrun
+vimproc
+vimshell

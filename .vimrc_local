@@ -1,0 +1,28 @@
+" reload_browser {
+function! s:reload_browser()
+    !$HOME/.opt/share/reload_browser/bin/reload_browser
+    redraw!
+endfunction
+command! W w | silent call s:reload_browser()
+command! J W
+" reload_browser }
+
+" cursor_color {
+if &term =~ "screen"
+    augroup CursorColor
+        au!
+        au InsertEnter   * silent execute '!echo -ne "\eP\e]12;red\a\e\\"'
+        au InsertLeave   * silent execute '!echo -ne "\eP\e]12;white\a\e\\"'
+        au InsertCharPre * silent execute '!echo -ne "\eP\e]12;red\a\e\\"'
+        au InsertChange  * silent execute '!echo -ne "\eP\e]12;red\a\e\\"'
+    augroup END
+    silent execute '!echo -ne "\eP\e[1 q\e\\"'
+endif
+" cursor_color }
+
+" forbug {
+augroup forbug
+    autocmd BufRead *.tex inoremap <Plug>IMAP_JumpForward <C-j>
+    autocmd BufRead *.tex nnoremap <Plug>IMAP_JumpForward <C-j>
+augroup END
+" forbug }

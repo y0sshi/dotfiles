@@ -1,0 +1,54 @@
+function getTimeRemain(){
+  DEADLINE="2019/02/08 17:00:00" # DEADLINE
+  second_DEADLINE="2019/02/12 17:00:00" # 2nd_DEADLINE
+
+  ALL=$(expr \( `date --date $DEADLINE +%s` - `date +%s` \))
+  SEC=$(expr $ALL % 60)
+  MIN=$(expr $ALL / 60 % 60)
+  HOR=$(expr $ALL / 3600 % 24)
+  DAY=$(expr $ALL / 86400 )
+  #MON=$(expr $ALL / 2592000 % 12)
+  #YER=$(expr $ALL / 31104000)
+
+  ALL2=$(expr \( `date --date $second_DEADLINE +%s` - `date +%s` \))
+  SEC2=$(expr $ALL2 % 60)
+  MIN2=$(expr $ALL2 / 60 % 60)
+  HOR2=$(expr $ALL2 / 3600 % 24)
+  DAY2=$(expr $ALL2 / 86400 )
+  #MON=$(expr $ALL2 / 2592000 % 12)
+  #YER=$(expr $ALL2 / 31104000)
+
+  if   [ $DAY -le  7 ]; then COLOR="%F{1}" # red
+  elif [ $DAY -le 14 ]; then COLOR="%F{5}" # magenta
+  elif [ $DAY -le 21 ]; then COLOR="%F{3}" # yellow
+  elif [ $DAY -le 28 ]; then COLOR="%F{2}" # green
+  elif [ $DAY -le 35 ]; then COLOR="%F{6}" # cyan
+  elif [ $DAY -le 42 ]; then COLOR="%F{4}" # blue
+  else                       COLOR="%F{7}" # white
+  fi
+
+  if [ $ALL2 -le 0 ]; then
+    TIMEREMAIN="%j"
+  elif [ $ALL -le 0 ]; then
+    TIMEREMAIN=$COLOR$(printf "%d days and %.2d:%.2d:%.2d" $DAY2 $HOR2 $MIN2 $SEC2)"%f"
+  else 
+    TIMEREMAIN=$COLOR$(printf "%d(%d) days and %.2d:%.2d:%.2d" $DAY $DAY2 $HOR $MIN $SEC)"%f"
+  fi
+}
+
+setopt PROMPT_SUBST
+
+if [ $TERM = screen ]; then 
+  promptname=$(print "\ek%m\e\\")$USERNAME
+else
+  promptname=$USERNAME
+fi
+
+PROMPT='%F{green}%U%B$promptname@%m:%u%f%F{yellow}%~%b%f %B[$TIMEREMAIN]%b
+ '
+ getTimeRemain
+ TRAPALRM(){
+   getTimeRemain
+   zle reset-prompt
+ }
+ TMOUT=1 # ls

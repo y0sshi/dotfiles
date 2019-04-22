@@ -1,0 +1,2 @@
+100
+['/home/users/naofumi/.vim/dein/', 'Shougo/dein.vim', 'Shougo/deoplete.nvim', 'Shougo/neco-syntax', 'Shougo/neco-vim', 'Shougo/neocomplete.vim', 'Shougo/neomru.vim', 'Shougo/neosnippet', 'Shougo/vimproc.vim', 'roxma/nvim-yarp', 'roxma/vim-hug-neovim-rpc', 'ujihisa/neco-look']

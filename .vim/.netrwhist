@@ -1,6 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/users/naofumi/lecture/Pattern_processing_Engineering_Advanced_Course/Naive_Bayes'
-let g:netrw_dirhist_2='/home/users/naofumi/Verilog-HDL/verilog_lecture/lec3/ip_sim_test/c_addsub_0'
-let g:netrw_dirhist_3='/home/users/naofumi/Pearl/ltc2308/ltc2308_if.shm'
-let g:netrw_dirhist_4='/home/users/naofumi/git_work/.git/info'
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/Users/y0sshi/.vim/pack'
+let g:netrw_dirhist_2='/Users/y0sshi/.vim'
+let g:netrw_dirhist_1='/Users/y0sshi/work/slab_work/OS_30days/HariboteOS/09_day/harib06a'
+let g:netrw_dirhist_0='/Users/y0sshi/work/slab_work/OS_30days/myHariboteOS'
+let g:netrw_dirhist_9='/usr/local/include'
+let g:netrw_dirhist_8='/usr/local'
+let g:netrw_dirhist_7='/usr/local/lib'
+let g:netrw_dirhist_6='/usr/local'
+let g:netrw_dirhist_5='/usr/local/include'
+let g:netrw_dirhist_4='/usr/local'

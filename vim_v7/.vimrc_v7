@@ -185,49 +185,49 @@ endif
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 
 " Required:
-"call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
-"NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 
- "NeoBundle 'scrooloose/nerdtree'
- "NeoBundle 'scrooloose/syntastic'
- "NeoBundle 'Yggdroot/indentLine'
- "NeoBundle 'Shougo/neocomplete.vim'
- "NeoBundle 'Shougo/neosnippet'
- "NeoBundle 'Shougo/neosnippet-snippets'
- "NeoBundle 'Shougo/neocomplcache'
- "NeoBundle 'tpope/vim-commentary'
- "NeoBundle 'Shougo/vimproc'
- "NeoBundle 'Shougo/vimshell'
- "NeoBundle 'Townk/vim-autoclose'
- "NeoBundle 'vhda/verilog_systemverilog.vim'
- "
- "NeoBundleLazy 'tpope/vim-endwise'
- "NeoBundleLazy 'thinca/vim-quickrun'
+ NeoBundle 'scrooloose/nerdtree'
+ NeoBundle 'scrooloose/syntastic'
+ NeoBundle 'Yggdroot/indentLine'
+ NeoBundle 'Shougo/neocomplete.vim'
+ NeoBundle 'Shougo/neosnippet'
+ NeoBundle 'Shougo/neosnippet-snippets'
+ NeoBundle 'Shougo/neocomplcache'
+ NeoBundle 'tpope/vim-commentary'
+ NeoBundle 'Shougo/vimproc'
+ NeoBundle 'Shougo/vimshell'
+ NeoBundle 'Townk/vim-autoclose'
+ NeoBundle 'vhda/verilog_systemverilog.vim'
+ 
+ NeoBundleLazy 'tpope/vim-endwise'
+ NeoBundleLazy 'thinca/vim-quickrun'
 
 "if neobundle#is_installed('neocomplcache.vim')
 " Vim起動時にneocompleteを有効にする
-"let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_at_startup = 1
 " smartcase有効化.大文字が入力されるまで大文字小文字の区別を無視する
-"let g:neocomplete_enable_smart_case = 1
+let g:neocomplete_enable_smart_case = 1
 " 3文字以上の単語に対して補完を有効にする
-"let g:neocomplete_min_keyword_length = 3
+let g:neocomplete_min_keyword_length = 3
 " 区切り文字まで補完する
-"let g:neocomplete_enable_auto_delimiter = 1
+let g:neocomplete_enable_auto_delimiter = 1
 "1文字目の入力から補完のポップアップを表示
-"let g:neocomplete_auto_completion_start_length = 1
+let g:neocomplete_auto_completion_start_length = 1
 "バックスペースで補完のポップアップを閉じる
-"inoremap <expr><BS> neocomplete#smart_close_popup()."<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."<C-h>"
 "エンターキーで補完候補の確定.スニペットの展開もエンターキーで確定・・・・・・②
-"imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
+imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
 "タブキーで補完候補の選択.スニペット内のジャンプもタブキーでジャンプ・・・・・・③
-"imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 "endif
 
 
@@ -249,18 +249,18 @@ let g:syntastic_mode_map = { 'mode': 'passive',
       \ 'active_filetypes': ['javascript'],
       \ 'passive_filetypes': [] }
 
-"source $VIMRUNTIME/macros/matchit.vim
-"let NERDTreeShowHidden = 1
-"nmap <C-t> :NERDTreeToggle<CR>
+source $VIMRUNTIME/macros/matchit.vim
+let NERDTreeShowHidden = 1
+nmap <C-t> :NERDTreeToggle<CR>
 
-"call neobundle#end()
+call neobundle#end()
 
 " Required:
 filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
-"NeoBundleCheck
+NeoBundleCheck
 
 if &compatible
   set nocompatible

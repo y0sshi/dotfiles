@@ -1,0 +1,168 @@
+"" NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+"" vim-airline
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_powerline_fonts = 1
+set laststatus=2
+let g:airline_theme = 'dark'
+let g:airline#extensions#tabline#enabled       = 1
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.maxlinenr = '㏑'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = 'Ɇ'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.dirty='⚡'
+
+" old vim-powerline symbols
+"let g:airline_left_sep = '⮀'
+"let g:airline_left_alt_sep = '⮁'
+"let g:airline_right_sep = '⮂'
+"let g:airline_right_alt_sep = '⮃'
+"let g:airline_symbols.branch = '⭠'
+"let g:airline_symbols.readonly = '⭤'
+
+"" deoplete
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+
+"" neo-snippet
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+	set conceallevel=2 concealcursor=niv
+endif
+
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory = $VIM_DIR . '/snippets/neosnippet-snippets,' . $VIM_DIR . '/snippets/vim-snippets'
+
+"" close tag
+source ${HOME}/.vim/script/closetag.vim
+
+"" vim-quickrun
+let g:quickrun_config = {
+			\   "watchdogs_checker/_" : {
+			\       "hook/u_nya_/enable" : 1,
+			\       "hook/inu/enable" : 0,
+			\       "hook/unite_quickfix/enable" : 0,
+			\       "hook/echo/enable" : 0,
+			\       "hook/back_buffer/enable" : 0,
+			\       "hook/close_unite_quickfix/enable" : 0,
+			\       "hook/close_buffer/enable_exit" : 0,
+			\       "hook/close_quickfix/enable_exit" : 1,
+			\       "hook/redraw_unite_quickfix/enable_exit" : 0,
+			\       "hook/close_unite_quickfix/enable_exit" : 1,
+			\   },
+			\
+			\   "cpp/watchdogs_checker" : {
+			\       "hook/add_include_option/enable" : 1,
+			\       "type" : "watchdogs_checker/g++",
+			\   },
+			\
+			\   "haskell/watchdogs_checker" : {
+			\       "type" : "watchdogs_checker/hlint",
+			\   },
+			\   
+			\   "watchdogs_checker/msvc" : {
+			\       "hook/msvc_compiler/enable" : 1,
+			\       "hook/msvc_compiler/target" : "c:/program files/microsoft visual studio 10.0",
+			\       "hook/output_encode/encoding" : "sjis",
+			\       "cmdopt" : "/Zs ",
+			\   },
+			\
+			\   "watchdogs_checker/g++" : {
+			\       "cmdopt" : "-std=gnu++0x -Wall",
+			\   },
+			\
+			\   "watchdogs_checker/clang++" : {
+			\       "cmdopt" : "-std=gnu++0x -Wall",
+			\   },
+			\
+			\   "python/watchdogs_checker" : {
+			\       "type" : "watchdogs_checker/pyflakes",
+			\   },
+			\   
+			\   "watchdogs_checker/pyflakes" : {
+			\       "command" : "c:/python27/scripts/pyflakes",
+			\   },
+			\
+			\}
+
+" watchdogs.vim の設定を追加
+let g:watchdogs_check_BufWritePost_enable = 1
+let g:watchdogs_check_CursorHold_enable   = 1
+"call watchdogs#setup(g:quickrun_config)
+
+"" vim-hier
+let g:hier_highlight_group_qf   = 'SpellBad'
+let g:hier_highlight_group_qfw  = 'SpellLocal'
+let g:hier_highlight_group_qfi  = 'SpellRare'
+
+let g:hier_highlight_group_loc  = 'SpellBad'
+let g:hier_highlight_group_locw = 'SpellLocal'
+let g:hier_highlight_group_loci = 'SpellRare'
+
+"" denite
+" Define mappings
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
+
+"" Neomake
+autocmd! BufWritePost,BufEnter * Neomake

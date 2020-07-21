@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/users/naofumi/lecture/Pattern_processing_Engineering_Advanced_Course/Naive_Bayes'
+let g:netrw_dirhist_2='/home/users/naofumi/Verilog-HDL/verilog_lecture/lec3/ip_sim_test/c_addsub_0'
+let g:netrw_dirhist_3='/home/users/naofumi/Pearl/ltc2308/ltc2308_if.shm'
+let g:netrw_dirhist_4='/home/users/naofumi/git_work/.git/info'

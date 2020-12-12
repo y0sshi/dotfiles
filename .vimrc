@@ -27,6 +27,7 @@ set backspace=indent,eol,start
 set showmatch
 set wildmenu
 set ttimeoutlen=50
+set mouse=a
 
 "" Highlight Search
 set hlsearch
@@ -57,11 +58,13 @@ endif
 let g:tex_conceal=''
 
 "" pyenv
-if has('nvim')
-	let g:python_host_prog  = $PYENV_ROOT . '/versions/neovim2/bin/python'
-	let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim3/bin/python3'
-endif
+"let g:ruby_host_prog    = '/usr/bin/ruby'
+let g:python_host_prog  = '/home/users/naofumi/.pyenv/versions/neovim2/bin/python2'
+let g:python3_host_prog = '/home/users/naofumi/.pyenv/versions/neovim3/bin/python3'
 
-"" Plugin Settings
-source ${HOME}/.vim/script/.vimrc_pconfig
-let g:deoplete#enable_at_startup = 1
+if has('nvim')
+	source ${HOME}/.vim/script/.vimrc_pconfig
+	if has('python3')
+		let g:deoplete#enable_at_startup = 1
+	endif
+endif

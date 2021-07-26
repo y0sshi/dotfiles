@@ -28,6 +28,10 @@ set showmatch
 set wildmenu
 set ttimeoutlen=50
 set mouse=a
+set encoding=utf-8
+set fileencodings=utf-8,cp932
+set fileformats=unix,dos,mac
+lang en_US.UTF-8
 
 "" Highlight Search
 set hlsearch

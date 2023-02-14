@@ -29,7 +29,7 @@ set wildmenu
 set ttimeoutlen=50
 set mouse=a
 set encoding=utf-8
-set fileencodings=utf-8,cp932
+set fileencodings=utf-8,utf-16,ucs2le,ucs-2,iso-2022-jp,euc-jp,sjis,cp932
 set fileformats=unix,dos,mac
 lang en_US.UTF-8
 

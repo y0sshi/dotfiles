@@ -1,12 +1,13 @@
 vim.cmd [[packadd packer.nvim]]
 
-return require("packer").startup(function(use)
+require("packer").startup(function()
 	-- packer.nvim
 	use "wbthomason/packer.nvim"
 
 	-- vim-airline
 	use "vim-airline/vim-airline"
 	use "vim-airline/vim-airline-themes"
+	use "ryanoasis/vim-devicons"
 
 	-- nvim-lsp
 	use "neovim/nvim-lspconfig"
@@ -19,4 +20,11 @@ return require("packer").startup(function(use)
 	use "hrsh7th/cmp-buffer"
 	use "hrsh7th/cmp-cmdline"
 
+	-- invader-vim
+	use "mattn/invader-vim"
 end)
+
+-- Plugin Settings
+require("plugins/vim-airline")
+require("plugins/nvim-lsp")
+

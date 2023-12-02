@@ -1,5 +1,21 @@
--- mason setup
+-- setup LSP server
 require('mason').setup()
+require('mason-lspconfig').setup_handlers({function(server)
+	local opt = {
+		-- -- Function executed when the LSP server startup
+		-- on_attach = function(client, bufnr)
+		--   local opts = {noremap=true, slient=true}
+		--   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+		--   vim.cmd 'autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)'
+		-- end,
+		capabilities = require('cmp_nvim_lsp').default_capabilities(
+		vim.lsp.protocol.make_client_capabilities()
+		)
+	}
+
+	require('lspconfig')[server].setup(opt)
+end})
+
 
 -- keyboard shortcut
 vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
@@ -14,3 +30,4 @@ vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', 'g]', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 vim.keymap.set('n', 'g[', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+

@@ -1,3 +1,6 @@
+-- mason setup
+require('mason').setup()
+
 -- keyboard shortcut
 vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
 vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>')

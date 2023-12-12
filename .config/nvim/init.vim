@@ -62,7 +62,7 @@ endif
 let g:tex_conceal=''
 
 lua << EOF
-	require('plugin')
+	require('plugins')
 EOF
 if has('nvim')
 	let g:ruby_host_prog    = '/usr/bin/ruby'

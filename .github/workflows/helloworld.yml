@@ -3,7 +3,7 @@ on:
   - push
 jobs:
   echo:
-    runs-on: pineapple
+    runs-on: self-hosted
     steps:
       - name: Hello world
         run: echo hello, world!

@@ -4,6 +4,14 @@ syntax enable
 
 "" Key Bind
 map 0 ^
+inoremap <C-h> <C-o>h
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-l> <C-o>l
+inoremap <C-w> <C-o>w
+inoremap <C-e> <C-o>e<C-o>l
+inoremap <C-b> <C-o>b
+inoremap <C-s> <C-o>:w<CR>
 
 "" Environment Variable
 let VIM_DIR = $HOME . '/.vim'
@@ -64,6 +72,7 @@ let g:tex_conceal=''
 lua << EOF
 	require('plugins')
 EOF
+
 if has('nvim')
 	let g:ruby_host_prog    = '/usr/bin/ruby'
 	let g:python_host_prog  = '/usr/bin/python2'
@@ -74,3 +83,4 @@ if has('nvim')
 		let g:deoplete#enable_at_startup = 1
 	endif
 endif
+

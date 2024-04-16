@@ -1,30 +1,108 @@
-vim.cmd [[packadd packer.nvim]]
+-- bootstrap (lazy.nvim)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
 
-require("packer").startup(function()
-	-- packer.nvim
-	use "wbthomason/packer.nvim"
 
-	-- vim-airline
-	use "vim-airline/vim-airline"
-	use "vim-airline/vim-airline-themes"
-	use "ryanoasis/vim-devicons"
+-- plugin setup
+require("lazy").setup({
+	-- UI
+	{
+		-- color scheme
+		{
+			"Mofiqul/vscode.nvim",
+			"ellisonleao/gruvbox.nvim",
+		},
 
-	-- nvim-lsp
-	use "neovim/nvim-lspconfig"
-	use "williamboman/mason.nvim"
-	use "williamboman/mason-lspconfig.nvim"
-	use "hrsh7th/nvim-cmp"
-	use "hrsh7th/cmp-nvim-lsp"
-	use "hrsh7th/vim-vsnip"
-	use "hrsh7th/cmp-path"
-	use "hrsh7th/cmp-buffer"
-	use "hrsh7th/cmp-cmdline"
+		-- statusline
+		{
+			"nvim-lualine/lualine.nvim",
+			dependencies = {
+				"nvim-tree/nvim-web-devicons",
+			},
+		},
 
-	-- invader-vim
-	use "mattn/invader-vim"
-end)
+		"romgrk/barbar.nvim",
+		"lambdalisue/fern.vim",
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
+
+	-- LSP
+	{
+		{
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			build = ":MasonUpdate",
+			opts = {},
+		},
+		{
+			"neovim/nvim-lspconfig",
+			"hrsh7th/vim-vsnip",
+			"hrsh7th/nvim-cmp",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-cmdline",
+		},
+	},
+
+	-- git
+	{
+		{
+			"NeogitOrg/neogit",
+			dependencies = {
+				"nvim-lua/plenary.nvim",         -- required
+				"sindrets/diffview.nvim",        -- optional - Diff integration
+
+				-- Only one of these is needed, not both.
+				"nvim-telescope/telescope.nvim", -- optional
+				"ibhagwan/fzf-lua",              -- optional
+			},
+			config = true
+		},
+		{
+			"sindrets/diffview.nvim"
+		},
+	},
+
+	-- ChatGPT
+	{
+		"jackMort/ChatGPT.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("chatgpt").setup()
+		end,
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"folke/trouble.nvim",
+			"nvim-telescope/telescope.nvim"
+    }
+	},
+
+	-- others
+	{
+		"mattn/invader-vim",
+	},
+})
+
 
 -- Plugin Settings
-require("plugins/vim-airline")
+require("plugins/nvim-chatgpt")
 require("plugins/nvim-lsp")
+require("plugins/vim-airline")
+require("plugins/color-scheme")
+-- vim.cmd.colorscheme "gruvbox"
 

@@ -72,6 +72,11 @@ require("lazy").setup({
         },
     },
 
+    -- DoxygenToolKit
+    {
+        "vim-scripts/DoxygenToolkit.vim",
+    },
+
     -- git
     {
         {
@@ -112,11 +117,10 @@ require("lazy").setup({
     },
 })
 
-
 -- Plugin Settings
-require("plugins/nvim-chatgpt")
-require("plugins/nvim-lsp")
-require("plugins/vim-airline")
 require("plugins/color-scheme")
+require("plugins/vim-airline")
+require("plugins/nvim-lsp")
 require("plugins/snippet")
+require("plugins/nvim-chatgpt")
 

@@ -20,7 +20,7 @@ require("lazy").setup({
         -- color scheme
         {
             "Mofiqul/vscode.nvim",
-            "ellisonleao/gruvbox.nvim",
+            -- "ellisonleao/gruvbox.nvim",
         },
 
         -- statusline
@@ -31,11 +31,42 @@ require("lazy").setup({
             },
         },
 
-        "romgrk/barbar.nvim",
-        "lambdalisue/fern.vim",
-        "nvim-telescope/telescope.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
+        {
+            'romgrk/barbar.nvim',
+            dependencies = {
+                'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+                'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+            },
+            init = function() vim.g.barbar_auto_setup = false end,
+            opts = {
+                -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+                -- animation = true,
+                -- insert_at_start = true,
+                -- …etc.
+            },
+            version = '^1.0.0', -- optional: only update when a new 1.x version is released
+            event = {
+                'BufRead',
+                'BufNewFile',
+            },
+        },
+
+        {
+            "lambdalisue/fern.vim",
+            cmd = {
+                "Fern",
+                "FernDo",
+            },
+        },
+
+        {
+            "nvim-telescope/telescope.nvim",
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+            },
+            cmd = {
+                "Telescope",
+            },
         },
     },
 
@@ -43,6 +74,16 @@ require("lazy").setup({
     {
         {
             "williamboman/mason.nvim",
+            cmd = {
+                "Mason",
+                "MasonLog",
+                "MasonInstall",
+                "MasonUninstall",
+                "MasonUninstallAll",
+                "MasonUpdate",
+            },
+        },
+        {
             "williamboman/mason-lspconfig.nvim",
             build = ":MasonUpdate",
             opts = {},
@@ -58,9 +99,27 @@ require("lazy").setup({
         },
         {
             "mfussenegger/nvim-dap",
-            "rcarriga/nvim-dap-ui",
+            dependencies = {
+                "rcarriga/nvim-dap-ui",
+            },
+            event = {
+                'BufRead',
+                'BufNewFile',
+            },
+        },
+        {
             "mfussenegger/nvim-lint",
+            event = {
+                'BufRead',
+                'BufNewFile',
+            },
+        },
+        {
             "mhartington/formatter.nvim",
+            event = {
+                'BufRead',
+                'BufNewFile',
+            },
         },
     },
 
@@ -75,31 +134,68 @@ require("lazy").setup({
     -- DoxygenToolKit
     {
         "vim-scripts/DoxygenToolkit.vim",
+        cmd = {
+            "Dox",
+            "DoxAuthor",
+            "DoxBlock",
+            "DoxLic",
+            "DoxUndoc",
+        },
     },
 
     -- git
     {
         {
+            "kdheepak/lazygit.nvim",
+            cmd = {
+                "LazyGit",
+                "LazyGitConfig",
+                "LazyGitCurrentFile",
+                "LazyGitFilter",
+                "LazyGitFilterCurrentFile",
+            },
+            -- optional for floating window border decoration
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+            },
+            -- setting the keybinding for LazyGit with 'keys' is recommended in
+            -- order to load the plugin when the command is run for the first time
+            keys = {
+                { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+            }
+        },
+        {
             "NeogitOrg/neogit",
             dependencies = {
                 "nvim-lua/plenary.nvim",         -- required
-                "sindrets/diffview.nvim",        -- optional - Diff integration
 
                 -- Only one of these is needed, not both.
                 "nvim-telescope/telescope.nvim", -- optional
                 "ibhagwan/fzf-lua",              -- optional
             },
-            config = true
+            config = true,
+            cmd = {
+                "Neogit",
+                "NeogitResetState",
+            },
         },
         {
-            "sindrets/diffview.nvim"
+            "sindrets/diffview.nvim",
+            cmd = {
+                "DiffviewOpen",
+                "DiffviewClose",
+                "DiffviewLog",
+                "DiffviewRefresh",
+                "DiffviewFocusFiles",
+                "DiffviewFileHistory",
+                "DiffviewToggleFiles",
+            },
         },
     },
 
     -- ChatGPT
     {
         "jackMort/ChatGPT.nvim",
-        event = "VeryLazy",
         config = function()
             require("chatgpt").setup()
         end,
@@ -108,12 +204,23 @@ require("lazy").setup({
             "nvim-lua/plenary.nvim",
             "folke/trouble.nvim",
             "nvim-telescope/telescope.nvim"
-        }
+        },
+        -- event = "VeryLazy",
+        cmd = {
+            "ChatGPT",
+            "ChatGPTRun",
+            "ChatGPTActAs",
+            "ChatGPTCompleteCode",
+            "ChatGPTEditWithInstructions",
+        },
     },
 
     -- others
     {
         "mattn/invader-vim",
+        cmd = {
+            "Invader"
+        },
     },
 })
 

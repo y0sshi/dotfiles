@@ -5,10 +5,10 @@
 
 ## PROMPT
 function prompt() {
-	$host.UI.Write("Green", $host.UI.RawUI.BackgroundColor, "$($env:USERNAME)@$($env:COMPUTERNAME) ");
-	$host.UI.Write("Yellow", $host.UI.RawUI.BackgroundColor, "[$(get-location)] ");
-	$host.UI.Write("Cyan", $host.UI.RawUI.BackgroundColor, "[$(get-date -UFormat `"%Y/%m/%d %H:%M`")]");
-	"`n`r "
+    $host.UI.Write("Green", $host.UI.RawUI.BackgroundColor, "$($env:USERNAME)@$($env:COMPUTERNAME) ");
+    $host.UI.Write("Yellow", $host.UI.RawUI.BackgroundColor, "[$(get-location)] ");
+    $host.UI.Write("Cyan", $host.UI.RawUI.BackgroundColor, "[$(get-date -UFormat `"%Y/%m/%d %H:%M`")]");
+    "`n`r "
 }
 
 ## Shell Key-Bindings
@@ -28,6 +28,6 @@ Set-Alias -name grep   -value Select-String
 # See https://ch0.co/tab-completion for details.
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
+    Import-Module "$ChocolateyProfile"
 }
 

@@ -63,8 +63,8 @@ let g:tex_conceal=''
 
 "" pyenv
 "let g:ruby_host_prog    = '/usr/bin/ruby'
-let g:python_host_prog  = '/home/users/naofumi/.pyenv/versions/neovim2/bin/python2'
-let g:python3_host_prog = '/home/users/naofumi/.pyenv/versions/neovim3/bin/python3'
+let g:python_host_prog  = '${HOME}/.pyenv/versions/neovim2/bin/python2'
+let g:python3_host_prog = '${HOME}/.pyenv/versions/neovim3/bin/python3'
 
 if has('nvim')
 	source ${HOME}/.vim/script/.vimrc_pconfig

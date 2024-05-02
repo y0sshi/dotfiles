@@ -1,7 +1,8 @@
 ## Set-ExecutionPolicy RemoteSigned
 
 ## Window Title
-(Get-Host).UI.RawUI.WindowTitle = "v(^_^)v PowerShell 7 b(^_^)d";
+#(Get-Host).UI.RawUI.WindowTitle = "v(^_^)v PowerShell 7 b(^_^)d";
+(Get-Host).UI.RawUI.WindowTitle = "v(^_^)v PowerShell b(^_^)d";
 
 ## PROMPT
 function prompt() {

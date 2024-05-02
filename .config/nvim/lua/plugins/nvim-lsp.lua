@@ -33,17 +33,50 @@ vim.keymap.set('n', 'g[', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 
 
 -- Reference highlight
-vim.cmd [[
-set updatetime=100
-highlight LspReferenceText  cterm=underline ctermbg=8 gui=underline guibg=#104040
-highlight LspReferenceRead  cterm=underline ctermbg=8 gui=underline guibg=#104040
-highlight LspReferenceWrite cterm=underline ctermbg=8 gui=underline guibg=#104040
-augroup lsp_document_highlight
-autocmd!
-autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
-autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
-augroup END
-]]
+-- vim.cmd [[
+-- set updatetime=100
+-- highlight LspReferenceText  cterm=underline ctermbg=8 gui=underline guibg=#104040
+-- highlight LspReferenceRead  cterm=underline ctermbg=8 gui=underline guibg=#104040
+-- highlight LspReferenceWrite cterm=underline ctermbg=8 gui=underline guibg=#104040
+-- augroup lsp_document_highlight
+-- autocmd!
+-- autocmd CursorHold,CursorHoldI   * lua vim.lsp.buf.document_highlight()
+-- autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
+-- augroup END
+-- ]]
+vim.cmd('set updatetime=50')
+vim.cmd('highlight LspReferenceText  cterm=underline ctermbg=8 gui=underline guibg=#104040')
+vim.cmd('highlight LspReferenceRead  cterm=underline ctermbg=8 gui=underline guibg=#104040')
+vim.cmd('highlight LspReferenceWrite cterm=underline ctermbg=8 gui=underline guibg=#104040')
+require("mason-lspconfig").setup_handlers {
+    function(server_name)
+        local opts = {
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            on_attach = function(client, bufnr)
+                if client.supports_method "textDocument/documentHighlight" then
+                    local lsp_document_highlight = vim.api.nvim_create_augroup("lsp_document_highlight", {})
+                    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+                        group = lsp_document_highlight,
+                        buffer = bufnr,
+                        callback = function()
+                            vim.lsp.buf.document_highlight()
+                        end,
+                    })
+                    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+                        group = lsp_document_highlight,
+                        buffer = bufnr,
+                        callback = function()
+                            vim.lsp.buf.clear_references()
+                        end,
+                    })
+                end
+            end,
+        }
+
+        require("lspconfig")[server_name].setup(opts)
+    end,
+}
+
 
 -- 3. completion (hrsh7th/nvim-cmp)
 local cmp     = require("cmp")
@@ -72,17 +105,17 @@ cmp.setup({
     },
 })
 cmp.setup.cmdline('/', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'buffer' }
-  }
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = 'buffer' }
+    }
 })
 cmp.setup.cmdline(":", {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = "path" },
-    { name = "cmdline" },
-  },
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = "path" },
+        { name = "cmdline" },
+    },
 })
 
 vim.cmd [[

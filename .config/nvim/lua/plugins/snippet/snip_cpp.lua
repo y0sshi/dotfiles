@@ -7,6 +7,11 @@ luasnip.add_snippets(nil, {
             luasnip.text_node({
                 '#include <iostream>',
                 '',
+                '/**',
+                ' * @brief Hello, World 表示プログラム',
+                ' *',
+                ' * @return',
+                ' */',
                 'int main(void) {',
                 '    std::cout << "hello, world!!" << std::endl;',
                 '    return 0;',

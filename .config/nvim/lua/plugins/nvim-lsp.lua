@@ -1,5 +1,24 @@
 -- setup LSP server
 require('mason').setup()
+require("mason-lspconfig").setup {
+    ensure_installed = {
+        "lua_ls",
+        "bashls",
+        "clangd",
+        "cmake",
+        "cssls",
+        "dockerls",
+        "docker_compose_language_service",
+        "gopls",
+        "html",
+        "jsonls",
+        "tsserver",
+        "marksman",
+        -- "nimls",
+        "pyright",
+        "rust_analyzer",
+    }
+}
 require('mason-lspconfig').setup_handlers({function(server)
     local opt = {
         -- -- Function executed when the LSP server startup
@@ -10,9 +29,8 @@ require('mason-lspconfig').setup_handlers({function(server)
         -- end,
         capabilities = require('cmp_nvim_lsp').default_capabilities(
         vim.lsp.protocol.make_client_capabilities()
-        )
+        ),
     }
-
     require('lspconfig')[server].setup(opt)
 end})
 

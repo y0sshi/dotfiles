@@ -37,7 +37,8 @@ set wildmenu
 set ttimeoutlen=50
 set mouse=a
 set encoding=utf-8
-set fileencodings=utf-8,cp932
+set clipboard+=unnamed
+set fileencodings=cp932,utf-8,utf-16le,utf-16be,utf-32le,utf-32be,ucs-bom,ucs2le,ucs-2,iso-2022-jp,euc-jp,sjis,latin1
 set fileformats=unix,dos,mac
 lang en_US.UTF-8
 
@@ -72,7 +73,8 @@ let g:tex_conceal=''
 if has('nvim')
     let g:ruby_host_prog    = '/usr/bin/ruby'
     let g:python_host_prog  = '/usr/bin/python2'
-    let g:python3_host_prog = '/usr/bin/python3'
+    "let g:python3_host_prog = 'C:\Tools\python3\3.10.11'
+    let g:python3_host_prog = 'C:\Tools\python3\3.12.6'
 
 
     if has('python3')

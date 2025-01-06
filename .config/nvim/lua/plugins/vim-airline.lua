@@ -3,6 +3,13 @@ vim.api.nvim_set_var('airline_powerline_fonts' , 1)
 vim.api.nvim_set_var('airline#extensions#tabline#enabled' , 1)
 
 -- lualine
+local function encoding_with_bomb()
+    ret = vim.o.enc
+    if vim.o.bomb then
+        ret = ret..'(BOM)'
+    end
+    return ret
+end
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -26,7 +33,8 @@ require('lualine').setup {
         lualine_a = {'mode'},
         lualine_b = {'filename', 'branch', 'diff'},
         lualine_c = {'diagnostics'},
-        lualine_x = {'fileformat', 'encoding', 'filetype'},
+        --lualine_x = {'fileformat', 'encoding', 'filetype'},
+        lualine_x = {'fileformat', encoding_with_bomb, 'filetype'},
         lualine_y = {},
         lualine_z = {'progress', 'location'}
     },

@@ -1,0 +1,30 @@
+# ignore all files
+*
+
+# not ignore files (exceptional)
+!.config/nvim
+!.emacs.d
+!.github/workflows
+!.local/share
+!.vim
+!vim_v7
+!Documents/PowerShell
+!.bashrc
+!.cshrc
+!.emacs
+!.exrc
+!.flexlmrc
+!.fvwm2rc
+!.gitattributes
+!.gitconfig
+!.gitignore
+!.gitmodules
+!.inputrc
+!.screenrc
+!.twmrc
+!.vimrc
+!.zshTimeRemain
+!.zshrc
+!profile.cmd
+!user.bash
+

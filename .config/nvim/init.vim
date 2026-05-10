@@ -20,7 +20,7 @@ let VIM_DIR = $HOME . '/.vim'
 filetype plugin indent on
 set cindent
 set autoindent
-set smartindent 
+set smartindent
 set list listchars=tab:\¦\ 
 highlight SpecialKey ctermbg=None ctermfg=242
 
@@ -53,33 +53,31 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 
-"" Paste from Clipboard
-if &term =~ "xterm"
-    let &t_SI .= "\e[?2004h"
-    let &t_EI .= "\e[?2004l"
-    let &pastetoggle = "\e[201~"
-
-    function XTermPasteBegin(ret)
-        set paste
-        return a:ret
-    endfunction
-
-    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-endif
+""" Paste from Clipboard
+"if &term =~ "xterm"
+"    let &t_SI .= "\e[?2004h"
+"    let &t_EI .= "\e[?2004l"
+"    let &pastetoggle = "\e[201~"
+"
+"    function XTermPasteBegin(ret)
+"        set paste
+"        return a:ret
+"    endfunction
+"
+"    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+"endif
 
 "" disable tex-conceal
 let g:tex_conceal=''
 
 if has('nvim')
-    let g:ruby_host_prog    = '/usr/bin/ruby'
-    let g:python_host_prog  = '/usr/bin/python2'
+    "let g:ruby_host_prog    = '/usr/bin/ruby'
+    "let g:python_host_prog  = '/usr/bin/python2'
     "let g:python3_host_prog = 'C:\Tools\python3\3.10.11'
-    let g:python3_host_prog = 'C:\Tools\python3\3.12.6'
 
-
-    if has('python3')
-        let g:deoplete#enable_at_startup = 1
-    endif
+    "if has('python3')
+    "    let g:deoplete#enable_at_startup = 1
+    "endif
 endif
 
 lua << EOF

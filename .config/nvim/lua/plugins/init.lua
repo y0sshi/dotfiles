@@ -1,6 +1,7 @@
 -- bootstrap (lazy.nvim)
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+local uv = vim.uv or vim.loop
+if not uv.fs_stat(lazypath) then
     vim.fn.system({
         "git",
         "clone",
@@ -74,22 +75,28 @@ require("lazy").setup({
     {
         {
             "williamboman/mason.nvim",
-            cmd = {
-                "Mason",
-                "MasonLog",
-                "MasonInstall",
-                "MasonUninstall",
-                "MasonUninstallAll",
-                "MasonUpdate",
-            },
+            config = true,
         },
         {
             "williamboman/mason-lspconfig.nvim",
-            build = ":MasonUpdate",
-            opts = {},
+            dependencies = { "williamboman/mason.nvim" },
         },
         {
             "neovim/nvim-lspconfig",
+            dependencies = {
+                "williamboman/mason.nvim",
+                "williamboman/mason-lspconfig.nvim",
+                "hrsh7th/cmp-nvim-lsp",
+            },
+            event = "VeryLazy",
+            config = function()
+                local status, err = pcall(require, "plugins/nvim-lsp")
+                if not status then
+                    print("LSP configuration failed to load: " .. err)
+                end
+            end,
+        },
+        {
             -- "hrsh7th/vim-vsnip",
             "hrsh7th/nvim-cmp",
             "hrsh7th/cmp-nvim-lsp",
@@ -227,7 +234,6 @@ require("lazy").setup({
 -- Plugin Settings
 require("plugins/color-scheme")
 require("plugins/vim-airline")
-require("plugins/nvim-lsp")
 require("plugins/snippet")
 require("plugins/nvim-chatgpt")
 
